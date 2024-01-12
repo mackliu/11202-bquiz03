@@ -50,9 +50,7 @@ foreach($movies as $idx => $movie){
             </div>
         </div>
         <div>
-            <button class='show-btn' data-id="<?=$movie['id'];?>">
-                <?=($movie['sh']==1)?'顯示':'隱蔵';?>
-            </button>
+            <button class='show-btn' data-id="<?=$movie['id'];?>"><?=($movie['sh']==1)?'顯示':'隱蔵';?></button>
             <button class='sw-btn'  
                   data-id="<?=$movie['id'];?>" 
                   data-sw="<?=($idx!==0)?$movies[$idx-1]['id']:$movie['id'];?>">往上</button>
@@ -73,7 +71,19 @@ foreach($movies as $idx => $movie){
 </div>
 <script>
 $(".show-btn").on("click",function(){
-    
+    let id=$(this).data('id');
+    $.post("./api/show.php",{id},()=>{
+        location.reload()
+        //$(this).text(($(this).text()=='顯示')?"隱藏":"顯示");
+/*         switch($(this).text()){
+            case "隱藏":
+                $(this).text("顯示")
+            break;
+            case "顯示":
+                $(this).text("隱藏")
+            break;
+        } */
+    })
 })
 $(".sw-btn").on("click",function(){
 
