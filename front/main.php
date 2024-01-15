@@ -126,8 +126,9 @@ function slide(){
                 $(".item").eq(next).slideDown(1000);
             });
         break;
-
     }
+
+    now=next;
 
 }
 
